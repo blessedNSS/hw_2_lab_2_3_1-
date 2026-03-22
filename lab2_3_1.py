@@ -1,5 +1,5 @@
 import turtle
-from bouqet_data3 import bouquet_data # тут можна після from до bouqet_data додати 2 або 3 для виведення різних данних букетів
+from bouqet_data import bouquet_data # тут можна після from до bouqet_data додати 2 або 3 для виведення різних данних букетів
 
 class Stem:
 
