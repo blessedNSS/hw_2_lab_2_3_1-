@@ -47,12 +47,14 @@ class Petal:
         t.left(120)
         t.end_fill()
 
+
 class Flower:
 
-    def __init__(self, x, y, petal_color="red", petals_count=6):
+    def __init__(self, x, y, petal_color="red", petals_count=6, angle=90):
         self.x = x
         self.y = y
         self.petals_count = petals_count
+        self.angle = angle
 
         self.stem = Stem(length=140)
         self.leaf = Leaf(size=35)
@@ -63,19 +65,19 @@ class Flower:
         t.goto(self.x, self.y)
         t.pendown()
 
-        t.setheading(90)
+        t.setheading(self.angle)
 
         self.stem.draw(t)
 
         t.backward(self.stem.length * 0.5)
 
-        t.setheading(360)
+        t.setheading(self.angle - 45)
         self.leaf.draw(t)
 
-        t.setheading(180)
+        t.setheading(self.angle + 45)
         self.leaf.draw(t)
 
-        t.setheading(90)
+        t.setheading(self.angle)
         t.forward(self.stem.length * 0.5)
 
         for _ in range(self.petals_count):
@@ -83,16 +85,19 @@ class Flower:
             t.left(360 / self.petals_count)
 
 def main():
+    start_x = 0
+    start_y = -250
     screen = turtle.Screen()
-    screen.title("Букет квітів")
+    screen.title("Букет")
     screen.bgcolor("white")
 
     t = turtle.Turtle()
     t.speed(0)
     t.hideturtle()
 
-    for x, y, color, p_count in bouquet_data:
-        flower = Flower(x, y, petal_color=color, petals_count=p_count)
+    for angle, color, p_count in bouquet_data:
+
+        flower = Flower(start_x, start_y, petal_color=color, petals_count=p_count, angle=angle)
         flower.draw(t)
 
     screen.exitonclick()
