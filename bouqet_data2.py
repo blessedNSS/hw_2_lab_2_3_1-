@@ -4,3 +4,4 @@ bouquet_data = [
     (87, "magenta", 9),
     (110, "purple", 5)
 ]
+# другий букет
